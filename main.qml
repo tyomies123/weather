@@ -1,33 +1,58 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import QtQuick.Layouts 1.3
 
 ApplicationWindow {
+    id: appWindow
     visible: true
-    width: 640
-    height: 480
-    title: qsTr("Tabs")
+    width: 600
+    height: 800
+    title: swipeView.currentItem.item.title
+
+    CityModel {
+        id: cities
+    }
+
+    header: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            ToolButton {
+                text: "\u2630"
+            }
+            Label {
+                text: appWindow.title
+                horizontalAlignment: Qt.AlignHCenter
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            ToolButton {
+                text: qsTr("?")
+            }
+        }
+    }
 
     SwipeView {
         id: swipeView
         anchors.fill: parent
-        currentIndex: tabBar.currentIndex
 
-        Page1Form {
-        }
-
-        Page2Form {
+        Repeater {
+            model: cities
+            Loader {
+                active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
+                sourceComponent: Page1Form {
+                    title: city
+                }
+            }
         }
     }
 
-    footer: TabBar {
-        id: tabBar
-        currentIndex: swipeView.currentIndex
-
-        TabButton {
-            text: qsTr("Page 1")
-        }
-        TabButton {
-            text: qsTr("Page 2")
+    footer: Pane {
+        width: parent.width
+        PageIndicator{
+            count: swipeView.count
+            currentIndex: swipeView.currentIndex
+            anchors.horizontalCenter: parent.horizontalCenter
         }
     }
 }
