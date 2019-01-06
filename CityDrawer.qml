@@ -4,6 +4,14 @@ import QtQuick.Layouts 1.3
 
 Drawer {
     property alias cityIndex: listView.currentIndex
+
+    CityPicker {
+        id: cityPicker
+        anchors.centerIn: parent
+        width: appWindow.width - appWindow.width * 0.2
+        height: appWindow.height - appWindow.height * 0.3
+    }
+
     ColumnLayout {
         anchors.fill: parent
 
@@ -15,7 +23,7 @@ Drawer {
 
                 ToolButton {
                     text: "+"
-
+                    onClicked: cityPicker.open()
                 }
 
                 ToolButton {

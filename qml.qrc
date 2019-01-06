@@ -6,5 +6,6 @@
         <file>qtquickcontrols2.conf</file>
         <file>CityModel.qml</file>
         <file>CityDrawer.qml</file>
+        <file>CityPicker.qml</file>
     </qresource>
 </RCC>
