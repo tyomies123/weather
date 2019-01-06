@@ -16,4 +16,8 @@ ListModel {
     ListElement {
         city: "Budapest"
     }
+    ListElement {
+        city: "New York"
+    }
 }
+

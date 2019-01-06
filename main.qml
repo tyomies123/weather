@@ -5,20 +5,34 @@ import QtQuick.Layouts 1.3
 ApplicationWindow {
     id: appWindow
     visible: true
-    width: 600
-    height: 800
+    width: 400
+    height: 600
     title: swipeView.currentItem.item.title
 
     CityModel {
         id: cities
     }
 
+    CityDrawer {
+        id: drawer
+        width: appWindow.width * 0.8
+        height: appWindow.height
+        Binding {
+            target: swipeView
+            property: "currentIndex"
+            value: drawer.cityIndex
+        }
+    }
+
     header: ToolBar {
         RowLayout {
             anchors.fill: parent
+
             ToolButton {
                 text: "\u2630"
+                onClicked: drawer.open()
             }
+
             Label {
                 text: appWindow.title
                 horizontalAlignment: Qt.AlignHCenter

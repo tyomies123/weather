@@ -3,8 +3,8 @@
         <file>main.qml</file>
         <file>Page1Form.ui.qml</file>
         <file>Page2Form.ui.qml</file>
-        <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>CityModel.qml</file>
+        <file>CityDrawer.qml</file>
     </qresource>
 </RCC>

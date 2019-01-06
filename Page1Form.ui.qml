@@ -10,3 +10,4 @@ Page {
         anchors.centerIn: parent
     }
 }
+
