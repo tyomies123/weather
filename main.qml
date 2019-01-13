@@ -1,17 +1,15 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
+import edu.owe 1.0
 
 ApplicationWindow {
     id: appWindow
     visible: true
     width: 400
     height: 600
-    title: swipeView.currentItem.item.title
+    title: "Weather"
 
-    CityModel {
-        id: cities
-    }
 
     CityDrawer {
         id: drawer
@@ -34,7 +32,7 @@ ApplicationWindow {
             }
 
             Label {
-                text: appWindow.title
+                text: swipeView.currentItem.item.title
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 Layout.fillWidth: true
@@ -51,13 +49,17 @@ ApplicationWindow {
         anchors.fill: parent
 
         Repeater {
-            model: cities
+            model: OpenWeather.cityModel
             Loader {
                 active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
                 sourceComponent: Page1Form {
-                    title: city
+                    title: modelData
                 }
             }
+        }
+
+        Component.onCompleted: {
+            swipeView.currentIndex = OpenWeather.lastCityIndex
         }
     }
 

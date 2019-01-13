@@ -1,12 +1,13 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
+import edu.owe 1.0
 
 Dialog {
     id: dialog
     standardButtons: Dialog.Ok | Dialog.Cancel
     modal: true
-    title: qsTr("Select city")
+    title: qsTr("Search city")
 
     onAccepted: {
         if(search.text != "")
@@ -18,7 +19,7 @@ Dialog {
 
     function saveCity(city)
     {
-        cities.append({"city": city});
+        OpenWeather.addCity(city)
     }
 
     ColumnLayout {
@@ -35,10 +36,13 @@ Dialog {
 
             ScrollIndicator.vertical: ScrollIndicator {}
 
-            model: ["1", "2", "3", "4"]
+            model: CitySearchModel{
+                filter: search.text
+            }
+
             delegate: ItemDelegate {
                 width: parent.width
-                text: modelData
+                text: city + "," + country
                 onClicked: {
                     saveCity(text)
                     dialog.close();

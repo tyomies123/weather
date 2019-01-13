@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
+import edu.owe 1.0
 
 Drawer {
     property alias cityIndex: listView.currentIndex
@@ -28,7 +29,7 @@ Drawer {
 
                 ToolButton {
                     text: "-"
-                    onClicked: cities.remove(listView.currentIndex)
+                    onClicked: OpenWeather.removeCity(listView.currentIndex)
                 }
             }
         }
@@ -38,7 +39,7 @@ Drawer {
             Layout.fillHeight: true
             Layout.fillWidth: true
 
-            model: cities
+            model: OpenWeather.cityModel
             orientation: Qt.Vertical
             delegate: ItemDelegate {
                 width: parent.width
