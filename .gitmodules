@@ -1,0 +1,3 @@
+[submodule "owe"]
+	path = owe
+	url = git@github.com:zsombi/owe_model.git
