@@ -52,7 +52,7 @@ ApplicationWindow {
             model: OpenWeather.cityModel
             Loader {
                 active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
-                sourceComponent: Page1Form {
+                sourceComponent: PageForm {
                     title: modelData
                 }
             }

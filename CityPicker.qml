@@ -46,6 +46,7 @@ Dialog {
                 onClicked: {
                     saveCity(text)
                     dialog.close();
+                    search.text = ""
                 }
             }
         }
